@@ -1,0 +1,10 @@
+.task{
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    background-color: var(--medium-color);
+    color: white;
+    padding: 0.3rem;
+    margin: 0.5rem;
+    justify-content: space-between;
+  }

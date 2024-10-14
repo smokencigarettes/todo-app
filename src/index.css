@@ -1,6 +1,13 @@
+:root{
+  --light-color: lightblue;
+  --medium-color: rgb(63, 96, 109);
+  --dark-color: rgb(49, 73, 85);
+  --darker-light-color: rgb(156, 196, 209);
+}
+
 body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: lightblue;
+  background-color: var(--light-color);
 }
 
 h1{
@@ -16,19 +23,19 @@ h1{
 
 button{
   border: none;
-  background-color: lightblue;
+  background-color: var(--light-color);
   margin: 0.2rem;
   padding: 0.2rem 0.5rem;
+  cursor: pointer;
 }
 button:hover{
-  background-color: rgb(156, 196, 209);
+  background-color: var(--darker-light-color);
 }
-
-.task-container{
-  background-color: rgb(35, 50, 102);
-  padding: 0.5rem;
+.active{
+  background-color: var(--dark-color);
+  color: white;
 }
-.checkbox{
-  background-color: gray;
-  margin: 0.5rem;
+.active:hover{
+  background-color: var(--dark-color);
+  color: white;
 }

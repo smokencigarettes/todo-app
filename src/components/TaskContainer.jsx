@@ -1,13 +1,14 @@
 import TaskCounter from './TaskCounter';
 import Task from './Task';
+import styles from "./styles/TaskContainer.module.css"
 
 function TaskContainer(){
     return(
         <>
         <TaskCounter/>
-        <section className='task-container'>
+        <ul className={styles.taskContainer}>
             <Task/>
-        </section>
+        </ul>
         </>
     )
 }
