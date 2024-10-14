@@ -7,6 +7,9 @@ function TaskContainer(){
         <>
         <TaskCounter/>
         <ul className={styles.taskContainer}>
+            <Task isCompleted={true}/>
+            <Task/>
+            <Task isCompleted={true}/>
             <Task/>
         </ul>
         </>

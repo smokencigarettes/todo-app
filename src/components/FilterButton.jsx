@@ -1,6 +1,7 @@
-function FilterButton(){
+function FilterButton({name, isActive}){
     return(
         <>
+        <button className={isActive ? "btn active" : "btn"}>{name}</button>
         </>
     )
 }

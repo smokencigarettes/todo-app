@@ -1,40 +1,24 @@
 import styles from "./styles/Task.module.css"
+import TaskButton from "./TaskButton";
 
-function Task(){
+function Task({isCompleted}){
     return(
-        <>
         <li className={styles.task}>
             <div>
-            <input type="checkbox"/>
-            <span>Studiare React</span>
+                <input type="checkbox"/>
+                <span className={isCompleted && styles.completed}>Studiare React</span>
             </div>
             <div className="task-button">
-            <button>Modifica</button>
-            <button>Elimina</button>
+                <button className="btn">Modifica</button>
+                <button className="btn">Elimina</button>
             </div>
         </li>
-        <li className={styles.task}>
-            <div>
-            <input type="checkbox"/>
-            <span>Studiare Javascript</span>
-            </div>
-            <div className="task-button">
-            <button>Modifica</button>
-            <button>Elimina</button>
-            </div>
-        </li>
-        <li className={styles.task}>
-            <div>
-            <input type="checkbox"/>
-            <span>Studiare Git</span>
-            </div>
-            <div className="task-button">
-            <button>Modifica</button>
-            <button>Elimina</button>
-            </div>
-        </li>
-        </>
     )
 }
 
 export default Task;
+
+
+
+{/* <TaskButton name={"Modifica"}/> */}
+{/* <TaskButton name={"Elimina"}/> */}

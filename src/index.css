@@ -21,14 +21,14 @@ h1{
   padding: 1rem;
 }
 
-button{
+.btn{
   border: none;
   background-color: var(--light-color);
   margin: 0.2rem;
   padding: 0.2rem 0.5rem;
   cursor: pointer;
 }
-button:hover{
+.btn:hover{
   background-color: var(--darker-light-color);
 }
 .active{
@@ -39,3 +39,8 @@ button:hover{
   background-color: var(--dark-color);
   color: white;
 }
+
+/* .completed{
+  color: black;
+  text-decoration: line-through;
+} */
