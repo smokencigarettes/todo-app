@@ -1,6 +1,6 @@
-function TaskCounter(){
+function TaskCounter({taskNumber}){
     return(
-        <h4>4 task in questa lista</h4>
+        <h4>{taskNumber} task in questa lista</h4>
     )
 }
 

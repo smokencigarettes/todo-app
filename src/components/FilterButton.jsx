@@ -1,7 +1,12 @@
-function FilterButton({name, isActive}){
+function FilterButton({name, isActive, setFilter}){
     return(
         <>
-        <button className={isActive ? "btn active" : "btn"}>{name}</button>
+        <button
+            className={isActive ? "btn active" : "btn"}
+            onClick={()=> setFilter(name)}
+        >
+            {name}
+        </button>
         </>
     )
 }

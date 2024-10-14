@@ -2,15 +2,12 @@ import TaskCounter from './TaskCounter';
 import Task from './Task';
 import styles from "./styles/TaskContainer.module.css"
 
-function TaskContainer(){
+function TaskContainer({taskList}){
     return(
         <>
-        <TaskCounter/>
+        <TaskCounter taskNumber={taskList.length}/>
         <ul className={styles.taskContainer}>
-            <Task isCompleted={true}/>
-            <Task/>
-            <Task isCompleted={true}/>
-            <Task/>
+            {taskList}
         </ul>
         </>
     )

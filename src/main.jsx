@@ -18,7 +18,7 @@ let taskList = [
   {
       id:3,
       name: "Studiare Git",
-      completed: false
+      completed: true
   },
 ]
 
