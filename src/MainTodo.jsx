@@ -1,25 +1,7 @@
-let taskList = [
-    {
-        id: 1,
-        name: "Studiare React",
-        completed: false
-    },
-    {
-        id: 2,
-        name: "Studiare Javascript",
-        completed: true
-    },
-    {
-        id:3,
-        name: "Studiare Git",
-        completed: false
-    },
-]
-
 function MainTodo(){
     return(
         <>
-        <h3>I miei task</h3>
+        {/* <h3>I miei task</h3>
         <h4>Che cosa devi fare?</h4>
         <input type="text" />
         <button>Aggiungi</button>
@@ -46,7 +28,7 @@ function MainTodo(){
                 <button>Modifica</button>
                 <button>Elimina</button>
             </div>
-        </section>
+        </section> */}
         </>
     )
 }

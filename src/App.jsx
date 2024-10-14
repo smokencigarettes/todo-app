@@ -1,10 +1,19 @@
 import './App.css';
-import MainTodo from "./MainTodo"
+import FilterButtonContainer from './components/FilterButtonContainer';
+// import MainTodo from "./MainTodo"
+import Form from './components/Form';
+import TaskContainer from './components/TaskContainer';
+
 function App() {
 
   return (
-    < >
-    <MainTodo/>
+    <>
+    <h1>I miei task</h1>
+    <div className='task-app'>
+      <Form/>
+      <FilterButtonContainer/>
+      <TaskContainer/>
+    </div>
     </>
   )
 }
