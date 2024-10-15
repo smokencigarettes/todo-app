@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import { nanoid } from 'nanoid'
 import FilterButtonContainer from './components/FilterButtonContainer';
 // import MainTodo from "./MainTodo"
 import Form from './components/Form';
@@ -12,20 +13,50 @@ const FILTERS = {
   Completati: task => task.completed
 }
 
-function App({tasks}) {
+function App(props) {
+  const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState("Tutti")
   
   const taskList = tasks
   .filter(FILTERS[filter])
   .map(task =>(
-    <Task name={task.name} isCompleted={task.completed} key={task.id}/>
+    <Task
+      key={task.id}
+      task={task}
+      deleteTask={deleteTask}
+      toggleTaskCompletion={toggleTaskCompletion}
+    />
   ))
+
+  function addTask(name){
+    const newTask = {
+      id: nanoid(),
+      name,
+      completed: false
+    }
+    setTasks([...tasks, newTask])
+  }
+
+  function deleteTask(id){
+    const remainingTask = tasks.filter( task => task.id !== id);
+    setTasks(remainingTask)
+  }
+
+  function toggleTaskCompletion(id){
+    const updatedTasks = tasks.map(task => {
+      if(task.id === id){
+        return {...task, completed: !task.completed}
+      }
+      return task;
+    });
+    setTasks(updatedTasks)
+  }
 
   return (
     <>
     <h1>I miei task</h1>
     <div className='task-app'>
-      <Form/>
+      <Form addTask={addTask}/>
       <FilterButtonContainer
         setFilter={setFilter}
         filters={FILTERS}

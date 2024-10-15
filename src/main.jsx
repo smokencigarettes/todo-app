@@ -13,12 +13,12 @@ let taskList = [
   {
       id: 2,
       name: "Studiare Javascript",
-      completed: true
+      completed: false
   },
   {
       id:3,
       name: "Studiare Git",
-      completed: true
+      completed: false
   },
 ]
 
