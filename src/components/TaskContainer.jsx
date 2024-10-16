@@ -6,9 +6,13 @@ function TaskContainer({taskList}){
     return(
         <>
         <TaskCounter taskNumber={taskList.length}/>
+        {
+            taskList.length > 0 ?
         <ul className={styles.taskContainer}>
             {taskList}
-        </ul>
+        </ul> :
+        <h3>Nessun task in questa lista</h3>
+        }
         </>
     )
 }
