@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { nanoid } from 'nanoid'
 import FilterButtonContainer from './components/FilterButtonContainer';
@@ -16,6 +16,10 @@ const FILTERS = {
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
   const [filter, setFilter] = useState("Tutti")
+
+  useEffect(()=>{
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  },[tasks])
   
   const taskList = tasks
   .filter(FILTERS[filter])
@@ -24,6 +28,7 @@ function App(props) {
       key={task.id}
       task={task}
       deleteTask={deleteTask}
+      editTask={editTask}
       toggleTaskCompletion={toggleTaskCompletion}
     />
   ))
@@ -40,6 +45,16 @@ function App(props) {
   function deleteTask(id){
     const remainingTask = tasks.filter( task => task.id !== id);
     setTasks(remainingTask)
+  }
+
+  function editTask(id, newName){
+    const editedTasks = tasks.map(task => {
+      if(task.id === id){
+        return {...task, name: newName}
+      }
+      return task;
+    });
+    setTasks(editedTasks)
   }
 
   function toggleTaskCompletion(id){
