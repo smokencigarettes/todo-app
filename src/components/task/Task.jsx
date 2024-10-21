@@ -1,17 +1,21 @@
-import { useEffect, useRef, useState } from "react";
-import styles from "./styles/Task.module.css"
+import { useEffect, useRef, useState, useContext } from "react";
+import styles from "../styles/Task.module.css"
+import { TasksDispatchContext } from "../../TasksContext";
 import TaskButton from "./TaskButton";
 
-function Task({task, deleteTask, editTask, toggleTaskCompletion}){
+function Task({task}){
+    const dispatch = useContext(TasksDispatchContext);
+
     const[isEditing, setIsEditing] = useState(false);
     const [newTaskName, setNewTaskName] = useState("");
     const editInputRef = useRef(null)
 
     useEffect(()=>{
         if(isEditing){
+            setNewTaskName(task.name);
             editInputRef.current.focus();
         }
-    }, [isEditing])
+    }, [isEditing, task.name])
 
     function handleNewTaskName(e){
         setNewTaskName(e.target.value);
@@ -19,7 +23,11 @@ function Task({task, deleteTask, editTask, toggleTaskCompletion}){
 
     function handleSubmit(e){
         e.preventDefault();
-        editTask(task.id, newTaskName);
+        dispatch({
+            type: "edited",
+            name: newTaskName,
+            id: task.id
+          });
         setNewTaskName("");
         setIsEditing(false);
     }
@@ -29,15 +37,29 @@ function Task({task, deleteTask, editTask, toggleTaskCompletion}){
         setNewTaskName("");
     }
 
+    function handleDeleteTask(){
+        dispatch({
+            type: "deleted",
+            id: task.id
+        })
+    }
+
+    function handleToggleTaskCompletion(){
+        dispatch({
+            type: "toggled",
+            id: task.id
+        })
+    }
+
     let taskView = (
         <>
         <div>
-            <input type="checkbox" checked={task.completed} onChange={()=> toggleTaskCompletion(task.id)}/>
+            <input type="checkbox" checked={task.completed} onChange={handleToggleTaskCompletion}/>
             <span className={task.completed ? styles.completed : ""}>{task.name}</span>
         </div>
         <div className="task-button">
             <button className="btn" onClick={()=> setIsEditing(true)}>Modifica</button>
-            <button className="btn" onClick={()=> deleteTask(task.id)}>Elimina</button>
+            <button className="btn" onClick={handleDeleteTask}>Elimina</button>
         </div>
         </>
     )
@@ -45,10 +67,6 @@ function Task({task, deleteTask, editTask, toggleTaskCompletion}){
     let taskEdit = (
         <>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="">
-                Modifica: {task.name}
-            </label>
-            <br/>
             <input type="text" 
                 value={newTaskName}
                 onChange={handleNewTaskName}

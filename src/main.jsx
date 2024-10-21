@@ -2,12 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import {TasksProvider} from './TasksContext';
 
-
-let taskList = JSON.parse(localStorage.getItem("tasks")) || []
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App tasks={taskList}/>
+    <TasksProvider>
+      <App/>
+    </TasksProvider>
   </StrictMode>,
 )

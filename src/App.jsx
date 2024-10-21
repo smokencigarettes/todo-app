@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './App.css';
-import { nanoid } from 'nanoid'
-import FilterButtonContainer from './components/FilterButtonContainer';
+import FilterButtonContainer from './components/filter/FilterButtonContainer';
 // import MainTodo from "./MainTodo"
 import Form from './components/Form';
-import Task from './components/Task';
-import TaskContainer from './components/TaskContainer';
+import Task from './components/task/Task';
+import TaskContainer from './components/task/TaskContainer';
+import { useTasks } from './TasksContext';
 
 const FILTERS = {
   Tutti: ()=> true,
@@ -13,9 +13,9 @@ const FILTERS = {
   Completati: task => task.completed
 }
 
-function App(props) {
-  const [tasks, setTasks] = useState(props.tasks);
-  const [filter, setFilter] = useState("Tutti")
+function App() {
+  const [filter, setFilter] = useState("Tutti");
+  const tasks = useTasks();
 
   useEffect(()=>{
     localStorage.setItem("tasks", JSON.stringify(tasks))
@@ -27,58 +27,21 @@ function App(props) {
     <Task
       key={task.id}
       task={task}
-      deleteTask={deleteTask}
-      editTask={editTask}
-      toggleTaskCompletion={toggleTaskCompletion}
     />
   ))
 
-  function addTask(name){
-    const newTask = {
-      id: nanoid(),
-      name,
-      completed: false
-    }
-    setTasks([...tasks, newTask])
-  }
-
-  function deleteTask(id){
-    const remainingTask = tasks.filter( task => task.id !== id);
-    setTasks(remainingTask)
-  }
-
-  function editTask(id, newName){
-    const editedTasks = tasks.map(task => {
-      if(task.id === id){
-        return {...task, name: newName}
-      }
-      return task;
-    });
-    setTasks(editedTasks)
-  }
-
-  function toggleTaskCompletion(id){
-    const updatedTasks = tasks.map(task => {
-      if(task.id === id){
-        return {...task, completed: !task.completed}
-      }
-      return task;
-    });
-    setTasks(updatedTasks)
-  }
-
   return (
     <>
-    <h1>I miei task</h1>
-    <div className='task-app'>
-      <Form addTask={addTask}/>
-      <FilterButtonContainer
-        setFilter={setFilter}
-        filters={FILTERS}
-        filter={filter}
-      />
-      <TaskContainer taskList={taskList}/>
-    </div>
+      <h1>I miei task</h1>
+      <div className='task-app'>
+        <Form/>
+        <FilterButtonContainer
+          setFilter={setFilter}
+          filters={FILTERS}
+          filter={filter}
+        />
+        <TaskContainer taskList={taskList}/>
+      </div>
     </>
   )
 }

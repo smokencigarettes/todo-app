@@ -1,6 +1,6 @@
 import TaskCounter from './TaskCounter';
 import Task from './Task';
-import styles from "./styles/TaskContainer.module.css"
+import styles from "../styles/TaskContainer.module.css"
 
 function TaskContainer({taskList}){
     return(
