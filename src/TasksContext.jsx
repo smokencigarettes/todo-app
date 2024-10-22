@@ -5,7 +5,7 @@ export const TasksContext = createContext(null);
 export const TasksDispatchContext = createContext(null);
 
 
-let initialData = JSON.parse(localStorage.getItem("tasks")) || []
+let initialData = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function TasksProvider({children}){
     const [tasks, dispatch] = useReducer(tasksReducer, initialData);
@@ -18,8 +18,14 @@ function TasksProvider({children}){
     )
 }
 
-function useTasks(){
-    return useContext(TasksContext)
+function useFilterTasks(filter){
+    let tasks = useContext(TasksContext);
+    const filteredTaskList = tasks.filter(filter);
+    return filteredTaskList;
 }
 
-export {TasksProvider, useTasks};
+function useTasks(){
+    return useContext(TasksContext);
+}
+
+export {TasksProvider, useTasks, useFilterTasks};

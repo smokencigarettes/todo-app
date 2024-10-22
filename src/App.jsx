@@ -3,7 +3,7 @@ import './App.css';
 import FilterButtonContainer from './components/filter/FilterButtonContainer';
 // import MainTodo from "./MainTodo"
 import Form from './components/Form';
-import Task from './components/task/Task';
+// import Task from './components/task/Task';
 import TaskContainer from './components/task/TaskContainer';
 import { useTasks } from './TasksContext';
 
@@ -21,15 +21,6 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks))
   },[tasks])
   
-  const taskList = tasks
-  .filter(FILTERS[filter])
-  .map(task =>(
-    <Task
-      key={task.id}
-      task={task}
-    />
-  ))
-
   return (
     <>
       <h1>I miei task</h1>
@@ -40,7 +31,7 @@ function App() {
           filters={FILTERS}
           filter={filter}
         />
-        <TaskContainer taskList={taskList}/>
+        <TaskContainer selectedFilter={FILTERS[filter]}/>
       </div>
     </>
   )
