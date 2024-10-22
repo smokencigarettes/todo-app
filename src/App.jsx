@@ -1,9 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import './App.css';
 import FilterButtonContainer from './components/filter/FilterButtonContainer';
-// import MainTodo from "./MainTodo"
 import Form from './components/Form';
-// import Task from './components/task/Task';
 import TaskContainer from './components/task/TaskContainer';
 import { useTasks } from './TasksContext';
 

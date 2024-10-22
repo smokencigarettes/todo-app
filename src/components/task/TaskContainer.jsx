@@ -1,11 +1,9 @@
-// import { useContext } from 'react';
 import TaskCounter from './TaskCounter';
 import Task from './Task';
 import styles from "../styles/TaskContainer.module.css"
-import { TasksContext, useFilterTasks } from '../../TasksContext';
+import { useFilterTasks } from '../../TasksContext';
 
 function TaskContainer({selectedFilter}){
-    // const tasks = useContext(TasksContext);
     const taskList = useFilterTasks(selectedFilter);
     return(
         <>

@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState, useContext } from "react";
 import styles from "../styles/Task.module.css"
 import { TasksDispatchContext } from "../../TasksContext";
-import TaskButton from "./TaskButton";
 
 function Task({task}){
     const dispatch = useContext(TasksDispatchContext);
@@ -87,8 +86,3 @@ function Task({task}){
 }
 
 export default Task;
-
-
-
-{/* <TaskButton name={"Modifica"}/> */}
-{/* <TaskButton name={"Elimina"}/> */}
