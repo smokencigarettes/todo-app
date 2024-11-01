@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import FilterButtonContainer from './components/filter/FilterButtonContainer';
 import Form from './components/Form';
