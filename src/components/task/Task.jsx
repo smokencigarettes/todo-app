@@ -31,11 +31,6 @@ function Task({task}){
         setIsEditing(false);
     }
 
-    function handleEditing(){
-        setIsEditing(false);
-        setNewTaskName("");
-    }
-
     function handleDeleteTask(){
         dispatch({
             type: "deleted",
@@ -72,7 +67,7 @@ function Task({task}){
                 ref = {editInputRef}
             />
             <div className="task-button">
-                <button className="btn" onClick={handleEditing}>Annulla</button>
+                <button className="btn">Annulla</button>
                 <button className="btn" type="submit">Salva</button>
             </div>
         </form>
